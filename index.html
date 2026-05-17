@@ -4,50 +4,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Why You Keep Choosing the Wrong People - Cornelius Aurelius</title>
-  <meta name="description" content="Read Why You Keep Choosing the Wrong People by Cornelius Aurelius. A clean, distraction-free ebook reader built for mobile, tablet and desktop.">
-  <meta name="keywords" content="Why You Keep Choosing the Wrong People, Cornelius Aurelius, Cornelius Aurelius ebook, relationship patterns, self respect, healing, standards, healthy love, ebook reader">
+  <meta name="description" content="Read Why You Keep Choosing the Wrong People by Cornelius Aurelius in a clean, distraction-free ebook reader built for mobile, tablet and desktop.">
+  <meta name="keywords" content="Why You Keep Choosing the Wrong People, Cornelius Aurelius, Cornelius Aurelius ebook, relationship book, self respect, healing, standards, emotional patterns, healthy love, ebook reader">
   <meta name="author" content="Cornelius Aurelius">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#050505">
   <meta property="og:title" content="Why You Keep Choosing the Wrong People - Cornelius Aurelius">
-  <meta property="og:description" content="A clean, distraction-free ebook reader for Why You Keep Choosing the Wrong People by Cornelius Aurelius.">
+  <meta property="og:description" content="A distraction-free ebook reader for Why You Keep Choosing the Wrong People by Cornelius Aurelius.">
   <meta property="og:type" content="book">
   <meta property="og:site_name" content="Cornelius Aurelius Ebooks">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#050505">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Book",
     "name": "Why You Keep Choosing the Wrong People",
-    "author": {
-      "@type": "Person",
-      "name": "Cornelius Aurelius"
-    },
+    "author": { "@type": "Person", "name": "Cornelius Aurelius" },
     "inLanguage": "en",
     "genre": "Self-help",
-    "publisher": {
-      "@type": "Person",
-      "name": "Cornelius Aurelius"
-    }
+    "publisher": { "@type": "Person", "name": "Cornelius Aurelius" }
   }
   </script>
   <style>
     :root {
       --bg: #050505;
-      --bg2: #0d0d0f;
-      --page: #121214;
-      --page-soft: #17171a;
-      --text: #f2eee5;
-      --muted: rgba(242, 238, 229, .68);
-      --faint: rgba(242, 238, 229, .16);
-      --gold: #d7b46a;
-      --red: #b3262e;
-      --red2: #7d151a;
-      --shadow: 0 28px 90px rgba(0,0,0,.62);
-      --radius: 28px;
+      --bg-soft: #0b0b0d;
+      --page: #111113;
+      --page-2: #171719;
+      --text: #f5f0e7;
+      --muted: rgba(245, 240, 231, .68);
+      --faint: rgba(245, 240, 231, .12);
+      --gold: #d9b66d;
+      --red: #ba2731;
       --reader-font-size: 20px;
-      --reader-line-height: 1.74;
+      --reader-line-height: 1.62;
       --chrome-opacity: 1;
+      --shell-top: max(58px, calc(48px + env(safe-area-inset-top)));
+      --shell-bottom: max(74px, calc(64px + env(safe-area-inset-bottom)));
+      color-scheme: dark;
     }
 
     * {
@@ -59,17 +53,18 @@
     body {
       width: 100%;
       height: 100%;
-      min-height: 100svh;
       margin: 0;
-      background:
-        radial-gradient(circle at top right, rgba(179, 38, 46, .18), transparent 34rem),
-        radial-gradient(circle at bottom left, rgba(215, 180, 106, .11), transparent 32rem),
-        var(--bg);
-      color: var(--text);
       overflow: hidden;
+      background:
+        radial-gradient(circle at 92% 12%, rgba(186, 39, 49, .18), transparent 33rem),
+        radial-gradient(circle at 12% 88%, rgba(217, 182, 109, .09), transparent 32rem),
+        linear-gradient(135deg, #030303 0%, #080808 58%, #140509 100%);
+      color: var(--text);
     }
 
     body {
+      min-height: 100svh;
+      min-height: 100dvh;
       font-family: Georgia, "Times New Roman", serif;
     }
 
@@ -78,274 +73,320 @@
       font: inherit;
     }
 
+    button {
+      border: 0;
+    }
+
     .reader {
       position: fixed;
       inset: 0;
+      height: 100svh;
+      height: 100dvh;
       display: grid;
-      place-items: center;
-      padding:
-        max(12px, env(safe-area-inset-top))
-        max(14px, env(safe-area-inset-right))
-        max(12px, env(safe-area-inset-bottom))
-        max(14px, env(safe-area-inset-left));
+      grid-template-rows: var(--shell-top) 1fr var(--shell-bottom);
       overflow: hidden;
       isolation: isolate;
+    }
+
+    .reader::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.45), transparent 18%, transparent 82%, rgba(0,0,0,.45)),
+        radial-gradient(circle at center, transparent 0 42%, rgba(0,0,0,.38) 100%);
+      z-index: 0;
     }
 
     .progressLine {
       position: fixed;
       top: 0;
       left: 0;
-      height: 3px;
       width: 100%;
-      background: rgba(255,255,255,.06);
-      z-index: 40;
-      opacity: var(--chrome-opacity);
-      transition: opacity .25s ease;
+      height: 3px;
+      background: rgba(255,255,255,.055);
+      z-index: 70;
     }
 
     .progressLine span {
       display: block;
-      height: 100%;
       width: 0%;
+      height: 100%;
       background: linear-gradient(90deg, var(--red), var(--gold));
-      transition: width .25s ease;
+      transition: width .22s ease;
     }
 
-    .chrome {
+    .topChrome,
+    .controls {
+      position: relative;
+      z-index: 60;
       opacity: var(--chrome-opacity);
-      transition: opacity .25s ease, transform .25s ease, background .25s ease;
-      z-index: 50;
+      transition: opacity .24s ease, transform .24s ease;
     }
 
-    .chromeHidden {
+    .reader.chromeHidden:not(:focus-within) {
       --chrome-opacity: 0;
+    }
+
+    .reader.chromeHidden:not(:focus-within) .topChrome {
+      transform: translateY(-8px);
+    }
+
+    .reader.chromeHidden:not(:focus-within) .controls {
+      transform: translateY(8px);
+    }
+
+    .topChrome {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 0 max(12px, env(safe-area-inset-left));
+      pointer-events: none;
+    }
+
+    .menuButton,
+    .pageCount,
+    .navButton,
+    .closeButton,
+    .settings button,
+    .menuLinks a,
+    .menuLinks button,
+    .tocItem {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     .menuButton,
     .pageCount {
-      position: fixed;
-      top: max(14px, env(safe-area-inset-top));
-      border: 1px solid rgba(215, 180, 106, .32);
-      background: rgba(10,10,12,.68);
+      pointer-events: auto;
+      border: 1px solid rgba(217, 182, 109, .34);
+      background: rgba(7, 7, 8, .72);
       color: var(--text);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 50px rgba(0,0,0,.3);
     }
 
     .menuButton {
-      left: max(14px, env(safe-area-inset-left));
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
+      display: grid;
+      place-items: center;
       cursor: pointer;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 22px;
+      font-size: 21px;
       line-height: 1;
     }
 
     .pageCount {
-      right: max(14px, env(safe-area-inset-right));
-      min-height: 44px;
-      max-width: calc(100vw - 86px);
+      min-height: 38px;
+      max-width: min(50vw, 190px);
+      padding: 0 13px;
+      border-radius: 999px;
       display: grid;
       place-items: center;
-      padding: 0 14px;
-      border-radius: 999px;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: var(--muted);
       white-space: nowrap;
     }
 
     .pageShell {
-      width: min(calc(100vw - 32px), 760px);
-      height: min(900px, calc(100svh - 154px));
-      min-height: 0;
-      margin: 58px auto 76px;
-      display: grid;
-      place-items: stretch;
-      outline: none;
-      z-index: 10;
-    }
-
-    .bookPage {
       position: relative;
+      z-index: 10;
+      grid-row: 2;
       width: 100%;
       height: 100%;
-      max-height: none;
-      overflow: auto;
-      overscroll-behavior: contain;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(215, 180, 106, .45) transparent;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.038), transparent 220px),
-        linear-gradient(135deg, rgba(215,180,106,.045), transparent 38%),
-        var(--page);
-      border: 1px solid rgba(215, 180, 106, .18);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: clamp(34px, 7vw, 74px) clamp(24px, 7vw, 76px);
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      padding: 0 max(10px, env(safe-area-inset-right)) 0 max(10px, env(safe-area-inset-left));
+      outline: none;
+      overflow: hidden;
     }
 
-    .bookPage::before {
-      content: "";
-      position: sticky;
-      top: 0;
-      display: block;
-      height: 1px;
-      margin-top: -1px;
-      background: linear-gradient(90deg, transparent, rgba(215,180,106,.32), transparent);
-    }
-
-    .bookPage h1 {
-      margin: 0 0 1.25em;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: clamp(1.95rem, 5.2vw, 3.35rem);
-      line-height: 1.04;
-      letter-spacing: -.045em;
-      color: #fff7df;
-      text-wrap: balance;
-    }
-
-    .bookPage h2 {
-      margin: 2em 0 1em;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--gold);
-      font-size: clamp(1rem, 3vw, 1.45rem);
-      line-height: 1.2;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .bookPage p,
-    .bookPage li {
-      font-size: var(--reader-font-size);
-      line-height: var(--reader-line-height);
-      color: var(--text);
-      margin: 0 0 1.05em;
-    }
-
-    .bookPage p {
-      text-wrap: pretty;
-    }
-
-    .bookPage .smallMeta {
-      margin-top: 2.2rem;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+    .coverPage,
+    .bookPage {
+      max-width: calc(100vw - 20px - env(safe-area-inset-left) - env(safe-area-inset-right));
+      max-height: 100%;
+      box-shadow: 0 28px 90px rgba(0,0,0,.52);
     }
 
     .coverPage {
-      width: 100%;
       height: 100%;
-      max-height: none;
+      width: min(calc(100vw - 28px), calc((100svh - var(--shell-top) - var(--shell-bottom)) * .647), 560px);
+      width: min(calc(100vw - 28px), calc((100dvh - var(--shell-top) - var(--shell-bottom)) * .647), 560px);
+      border-radius: 14px;
       display: grid;
       place-items: center;
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: #000;
-      border: 1px solid rgba(215, 180, 106, .2);
-      box-shadow: var(--shadow);
+      background: #030303;
+      overflow: visible;
     }
 
     .coverPage img {
+      display: block;
       width: 100%;
       height: 100%;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
-      display: block;
-      background: #000;
+      object-position: center;
+      border-radius: 8px;
+    }
+
+    .bookPage {
+      width: min(calc(100vw - 24px), 720px);
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior: none;
+      border: 1px solid rgba(217, 182, 109, .2);
+      border-radius: clamp(16px, 2.5vw, 28px);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.04), transparent 20%),
+        linear-gradient(180deg, var(--page-2), var(--page));
+      color: var(--text);
+      padding: clamp(20px, 4.3vh, 54px) clamp(22px, 5vw, 72px) clamp(16px, 3vh, 38px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .pageContent {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .bookPage h1,
+    .bookPage h2,
+    .bookPage p {
+      max-width: 100%;
+    }
+
+    .bookPage h1 {
+      margin: 0 0 .9em;
+      color: var(--gold);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: calc(var(--page-font, var(--reader-font-size)) * 1.28);
+      line-height: 1.12;
+      letter-spacing: .095em;
+      text-transform: uppercase;
+    }
+
+    .bookPage h2 {
+      margin: .2em 0 .72em;
+      color: var(--gold);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: calc(var(--page-font, var(--reader-font-size)) * 1.08);
+      line-height: 1.18;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .bookPage p {
+      margin: 0 0 .78em;
+      color: rgba(245,240,231,.96);
+      font-size: var(--page-font, var(--reader-font-size));
+      line-height: var(--page-line-height, var(--reader-line-height));
+    }
+
+    .bookPage p:last-child {
+      margin-bottom: 0;
+    }
+
+    .smallMeta {
+      flex: 0 0 auto;
+      margin-top: auto;
+      padding-top: 12px;
+      color: rgba(245,240,231,.52);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
     }
 
     .controls {
-      position: fixed;
-      left: 50%;
-      bottom: max(14px, env(safe-area-inset-bottom));
-      transform: translateX(-50%);
+      grid-row: 3;
       display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 10px;
-      padding: 8px;
-      border: 1px solid rgba(215, 180, 106, .28);
+      padding: 10px max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+      pointer-events: none;
+    }
+
+    .controlsInner {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 7px;
       border-radius: 999px;
-      background: rgba(10,10,12,.64);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 18px 50px rgba(0,0,0,.32);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      z-index: 50;
+      border: 1px solid rgba(217, 182, 109, .26);
+      background: rgba(5,5,6,.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 48px rgba(0,0,0,.36);
     }
 
     .navButton {
-      min-width: 128px;
-      min-height: 46px;
+      min-width: 112px;
+      min-height: 42px;
       padding: 0 18px;
-      border: 0;
       border-radius: 999px;
+      background: rgba(255,255,255,.075);
       color: var(--text);
-      background: rgba(255,255,255,.06);
-      cursor: pointer;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: .01em;
+      cursor: pointer;
     }
 
     .navButton.primary {
-      background: linear-gradient(135deg, var(--red2), var(--red));
+      background: linear-gradient(135deg, #b82431, #8d1019);
       color: #fff;
     }
 
     .navButton:disabled {
       opacity: .35;
-      cursor: not-allowed;
+      cursor: default;
     }
 
     .tapZone {
+      position: fixed;
+      top: var(--shell-top);
+      bottom: var(--shell-bottom);
+      z-index: 45;
+      width: 50vw;
+      border: 0 !important;
+      outline: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
       appearance: none;
       -webkit-appearance: none;
-      position: fixed;
-      top: 82px;
-      bottom: 82px;
-      width: 30vw;
-      z-index: 20;
+      box-shadow: none !important;
+      color: transparent !important;
+      opacity: 0;
       cursor: pointer;
-      display: block;
-      padding: 0;
-      margin: 0;
-      border: 0;
-      background: transparent;
-      color: transparent;
-      box-shadow: none;
-      opacity: 1;
     }
 
-    .tapZone:focus {
-      outline: none;
-    }
-
-    .tapZone:focus-visible {
-      outline: 1px solid rgba(215,180,106,.35);
-      outline-offset: -12px;
-      border-radius: 18px;
-    }
-
-    .tapZone.left {
-      left: 0;
-    }
-
-    .tapZone.right {
-      right: 0;
-    }
+    .tapZone.left { left: 0; }
+    .tapZone.right { right: 0; }
+    .tapZone:focus { outline: none !important; }
 
     .shade {
       position: fixed;
       inset: 0;
       z-index: 80;
-      background: rgba(0,0,0,.55);
+      background: rgba(0,0,0,.58);
       opacity: 0;
       pointer-events: none;
       transition: opacity .22s ease;
@@ -353,24 +394,20 @@
 
     .drawer {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0 auto 0 0;
       z-index: 90;
-      width: min(92vw, 440px);
+      width: min(94vw, 480px);
       height: 100svh;
-      padding:
-        max(22px, env(safe-area-inset-top))
-        18px
-        max(22px, env(safe-area-inset-bottom));
-      background:
-        linear-gradient(180deg, rgba(179,38,46,.14), transparent 32%),
-        #08080a;
-      border-right: 1px solid rgba(215,180,106,.22);
-      box-shadow: 34px 0 80px rgba(0,0,0,.5);
-      transform: translateX(-104%);
-      transition: transform .24s ease;
+      height: 100dvh;
       overflow: auto;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overscroll-behavior: contain;
+      padding: max(18px, env(safe-area-inset-top)) 18px max(22px, env(safe-area-inset-bottom));
+      background:
+        linear-gradient(180deg, rgba(23,23,25,.98), rgba(8,8,10,.98));
+      border-right: 1px solid rgba(217, 182, 109, .2);
+      box-shadow: 28px 0 80px rgba(0,0,0,.55);
+      transform: translateX(-104%);
+      transition: transform .26s ease;
     }
 
     body.drawerOpen .shade {
@@ -382,138 +419,157 @@
       transform: translateX(0);
     }
 
+    body.drawerOpen .tapZone {
+      display: none;
+    }
+
     .drawerHeader {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       display: flex;
+      gap: 14px;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 14px;
-      padding: 6px 4px 18px;
+      padding: 4px 0 16px;
+      background: linear-gradient(180deg, rgba(23,23,25,.98), rgba(23,23,25,.94) 80%, transparent);
     }
 
     .drawerTitle {
       margin: 0;
-      font-size: 22px;
-      line-height: 1.08;
-      letter-spacing: -.035em;
-      color: #fff7df;
+      color: var(--gold);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.2;
+      letter-spacing: .04em;
+      text-transform: uppercase;
     }
 
     .drawerTitle span {
       display: block;
-      margin-top: 8px;
+      margin-top: 7px;
       color: var(--muted);
       font-size: 12px;
       letter-spacing: .12em;
-      text-transform: uppercase;
     }
 
     .closeButton {
+      flex: 0 0 auto;
       width: 42px;
       height: 42px;
       border-radius: 999px;
-      border: 1px solid rgba(215,180,106,.25);
-      background: rgba(255,255,255,.05);
+      background: rgba(255,255,255,.08);
       color: var(--text);
-      cursor: pointer;
-      font-size: 24px;
+      font-size: 28px;
       line-height: 1;
+      cursor: pointer;
     }
 
     .menuLinks {
       display: grid;
-      gap: 10px;
-      margin: 0 0 20px;
+      gap: 9px;
+      margin-bottom: 18px;
     }
 
     .menuLinks a,
     .menuLinks button {
       width: 100%;
-      min-height: 48px;
+      min-height: 54px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       padding: 12px 14px;
+      border: 1px solid rgba(217,182,109,.17);
       border-radius: 16px;
-      border: 1px solid rgba(215,180,106,.16);
-      background: rgba(255,255,255,.045);
+      background: rgba(255,255,255,.055);
       color: var(--text);
       text-decoration: none;
-      cursor: pointer;
       text-align: left;
-      font-weight: 750;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 800;
     }
 
     .menuLinks small {
       color: var(--gold);
-      font-size: 12px;
+      font-size: 11px;
+      font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
     .tocHeading {
-      margin: 26px 4px 12px;
+      margin: 22px 0 10px;
       color: var(--gold);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 12px;
-      letter-spacing: .18em;
+      font-weight: 900;
+      letter-spacing: .16em;
       text-transform: uppercase;
-    }
-
-    .tocList {
-      display: grid;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .tocItem {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: center;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.035);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 12px 12px;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .tocItem strong {
-      font-size: 14px;
-      line-height: 1.22;
-      font-weight: 720;
-    }
-
-    .tocItem span {
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
     }
 
     .settings {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin: 0 0 20px;
+      margin-bottom: 18px;
     }
 
     .settings button {
-      min-height: 42px;
-      border-radius: 12px;
-      border: 1px solid rgba(215,180,106,.16);
+      min-height: 44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.075);
+      color: var(--text);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .tocList {
+      display: grid;
+      gap: 8px;
+      padding-bottom: 20px;
+    }
+
+    .tocItem {
+      width: 100%;
+      min-height: 54px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 11px 13px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.045);
       color: var(--text);
+      text-align: left;
       cursor: pointer;
+    }
+
+    .tocItem strong {
+      min-width: 0;
+      font-size: 13px;
+      line-height: 1.24;
       font-weight: 800;
     }
 
+    .tocItem span {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
     .drawerFooter {
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 16px;
+      margin-top: 10px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.09);
       color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 12px;
       line-height: 1.55;
     }
@@ -522,81 +578,88 @@
       color: var(--text);
     }
 
-    .srOnly {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
-      border: 0;
+    @media (min-width: 840px) {
+      :root {
+        --shell-top: 62px;
+        --shell-bottom: 78px;
+      }
+      .bookPage {
+        width: min(calc(100vw - 130px), 680px);
+      }
+      .coverPage {
+        width: min(calc(100vw - 170px), calc((100svh - var(--shell-top) - var(--shell-bottom)) * .647), 520px);
+        width: min(calc(100vw - 170px), calc((100dvh - var(--shell-top) - var(--shell-bottom)) * .647), 520px);
+      }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 560px) {
       :root {
-        --reader-font-size: 18px;
-        --reader-line-height: 1.68;
-        --radius: 22px;
+        --shell-top: max(54px, calc(46px + env(safe-area-inset-top)));
+        --shell-bottom: max(66px, calc(58px + env(safe-area-inset-bottom)));
+        --reader-font-size: 17px;
+        --reader-line-height: 1.54;
       }
-
-      .reader {
-        padding: 0;
+      .topChrome {
+        padding-left: max(9px, env(safe-area-inset-left));
+        padding-right: max(9px, env(safe-area-inset-right));
       }
-
+      .menuButton {
+        width: 40px;
+        height: 40px;
+      }
+      .pageCount {
+        min-height: 36px;
+        font-size: 10px;
+      }
       .pageShell {
-        width: 100%;
-        height: 100svh;
-        max-height: none;
-        margin: 0;
+        padding-left: max(7px, env(safe-area-inset-left));
+        padding-right: max(7px, env(safe-area-inset-right));
       }
-
       .bookPage {
-        width: 100%;
-        height: 100%;
-        max-height: none;
-        border-radius: 0;
-        padding: 76px 22px 104px;
-        border-left: 0;
-        border-right: 0;
-        border-color: rgba(215,180,106,.12);
+        width: calc(100vw - 16px - env(safe-area-inset-left) - env(safe-area-inset-right));
+        border-radius: 16px;
+        padding: clamp(16px, 3.2vh, 30px) clamp(16px, 5vw, 28px) clamp(12px, 2.4vh, 24px);
       }
-
       .coverPage {
-        width: 100%;
-        height: 100%;
-        max-height: none;
-        border-radius: 0;
-        border-left: 0;
-        border-right: 0;
+        width: min(calc(100vw - 16px), calc((100svh - var(--shell-top) - var(--shell-bottom)) * .647));
+        width: min(calc(100vw - 16px), calc((100dvh - var(--shell-top) - var(--shell-bottom)) * .647));
       }
-
-      .controls {
-        width: calc(100vw - 24px);
+      .controlsInner {
+        width: min(100%, 360px);
       }
-
       .navButton {
         min-width: 0;
-        flex: 1;
-        padding: 0 10px;
-      }
-
-      .pageCount {
-        font-size: 10px;
+        flex: 1 1 0;
         min-height: 40px;
+        padding: 0 11px;
+        font-size: 13px;
       }
-
-      .menuButton {
-        width: 44px;
-        height: 44px;
+      .drawer {
+        width: 100vw;
+        border-right: 0;
+      }
+      .tocItem {
+        min-height: 58px;
       }
     }
 
-    @media (min-width: 980px) {
+    @media (max-height: 560px) {
+      :root {
+        --shell-top: 50px;
+        --shell-bottom: 58px;
+        --reader-line-height: 1.42;
+      }
+      .menuButton { width: 38px; height: 38px; }
+      .pageCount { min-height: 34px; }
+      .controls { padding-top: 6px; padding-bottom: 8px; }
+      .controlsInner { padding: 5px; }
+      .navButton { min-height: 36px; }
       .bookPage {
-        padding-left: 86px;
-        padding-right: 86px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+      }
+      .smallMeta {
+        padding-top: 6px;
       }
     }
 
@@ -608,22 +671,25 @@
     }
   </style>
 </head>
-
 <body>
-  <div class="progressLine chrome" aria-hidden="true"><span id="progressBar"></span></div>
+  <div class="progressLine" aria-hidden="true"><span id="progressBar"></span></div>
 
   <div id="reader" class="reader" aria-live="polite">
-    <button id="menuButton" class="menuButton chrome" type="button" aria-label="Open menu">☰</button>
-    <div id="pageCount" class="pageCount chrome">Cover</div>
+    <div class="topChrome">
+      <button id="menuButton" class="menuButton" type="button" aria-label="Open ebook menu">☰</button>
+      <div id="pageCount" class="pageCount">Cover</div>
+    </div>
 
     <button id="tapLeft" class="tapZone left" type="button" aria-label="Previous page"></button>
     <button id="tapRight" class="tapZone right" type="button" aria-label="Next page"></button>
 
     <main id="pageShell" class="pageShell" tabindex="-1"></main>
 
-    <nav class="controls chrome" aria-label="Page controls">
-      <button id="prevButton" class="navButton" type="button">‹ Previous</button>
-      <button id="nextButton" class="navButton primary" type="button">Next ›</button>
+    <nav class="controls" aria-label="Page controls">
+      <div class="controlsInner">
+        <button id="prevButton" class="navButton" type="button">‹ Previous</button>
+        <button id="nextButton" class="navButton primary" type="button">Next ›</button>
+      </div>
     </nav>
   </div>
 
@@ -631,10 +697,7 @@
 
   <aside id="drawer" class="drawer" aria-label="Ebook menu" aria-hidden="true">
     <div class="drawerHeader">
-      <h2 class="drawerTitle">
-        Why You Keep Choosing the Wrong People
-        <span>Cornelius Aurelius</span>
-      </h2>
+      <h2 class="drawerTitle">Why You Keep Choosing the Wrong People<span>Cornelius Aurelius</span></h2>
       <button id="closeButton" class="closeButton" type="button" aria-label="Close menu">×</button>
     </div>
 
@@ -658,8 +721,8 @@
 
     <div class="drawerFooter">
       <strong>Cornelius Aurelius</strong><br>
-      © <span id="year">2026</span> Cornelius Aurelius. All rights reserved.<br>
-      Built as a distraction-free reader: swipe left or right, tap the page edges, or use Previous and Next.
+      © <span id="year"></span> Cornelius Aurelius. All rights reserved.<br>
+      Swipe left/right, tap the page edges, or use Previous and Next. Reader pages do not scroll.
     </div>
   </aside>
 
@@ -669,10 +732,11 @@
   <script>
     const BOOK_TITLE = "Why You Keep Choosing the Wrong People";
     const AUTHOR = "Cornelius Aurelius";
+    const TOTAL_BOOK_PAGES = 145;
     const BOOK_PAGES = JSON.parse(document.getElementById("bookPagesData").textContent);
     const CHAPTERS = JSON.parse(document.getElementById("chaptersData").textContent);
-    const STORE_KEY_PAGE = "ca_wrong_people_reader_page_v1";
-    const STORE_KEY_FONT = "ca_wrong_people_reader_font_v1";
+    const STORE_KEY_PAGE = "ca_wrong_people_reader_page_v2";
+    const STORE_KEY_FONT = "ca_wrong_people_reader_font_v2";
 
     const reader = document.getElementById("reader");
     const pageShell = document.getElementById("pageShell");
@@ -689,24 +753,29 @@
     const tocList = document.getElementById("tocList");
     const tapLeft = document.getElementById("tapLeft");
     const tapRight = document.getElementById("tapRight");
+    const fontDown = document.getElementById("fontDown");
+    const fontReset = document.getElementById("fontReset");
+    const fontUp = document.getElementById("fontUp");
 
     let currentPage = getInitialPage();
     let chromeTimer = null;
     let touchStartX = 0;
     let touchStartY = 0;
-    let fontSize = Number(localStorage.getItem(STORE_KEY_FONT) || 0) || null;
+    let customFontSize = Number(localStorage.getItem(STORE_KEY_FONT) || 0) || null;
+    let resizeTimer = null;
 
-    if (fontSize) {
-      document.documentElement.style.setProperty("--reader-font-size", fontSize + "px");
-    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+    if (customFontSize) document.documentElement.style.setProperty("--reader-font-size", customFontSize + "px");
 
     function clamp(value, min, max) {
       return Math.max(min, Math.min(max, value));
     }
 
     function pageIndexFromBookPage(pageNumber) {
-      if (pageNumber === 0) return 0;
-      return clamp(Number(pageNumber), 0, BOOK_PAGES.length - 1);
+      if (String(pageNumber).toLowerCase() === "cover" || Number(pageNumber) === 0) return 0;
+      const wanted = Number(pageNumber);
+      const found = BOOK_PAGES.findIndex(p => Number(p.number) === wanted);
+      return found >= 0 ? found : clamp(wanted, 0, BOOK_PAGES.length - 1);
     }
 
     function getInitialPage() {
@@ -716,11 +785,12 @@
       if (pageMatch) return pageIndexFromBookPage(Number(pageMatch[1]));
 
       const saved = Number(localStorage.getItem(STORE_KEY_PAGE));
-      if (Number.isFinite(saved) && saved >= 0) {
-        return clamp(saved, 0, BOOK_PAGES.length - 1);
-      }
-
+      if (Number.isFinite(saved) && saved >= 0) return clamp(saved, 0, BOOK_PAGES.length - 1);
       return 0;
+    }
+
+    function normaliseText(text) {
+      return String(text || "").replace(/\s+/g, " ").trim();
     }
 
     function makeParagraph(text) {
@@ -729,45 +799,52 @@
       return p;
     }
 
+    function looksLikeHeading(text) {
+      const t = normaliseText(text);
+      if (!t || t.length > 95) return false;
+      if (/[.!?]$/.test(t)) return false;
+      if (/^[-–—]?\s*Cornelius Aurelius$/i.test(t)) return false;
+      if (/^[A-Z0-9 ,.'’“”"—–-]+$/.test(t)) return true;
+      return false;
+    }
+
     function renderTextPage(page) {
       const article = document.createElement("article");
       article.className = "bookPage";
-      article.setAttribute("aria-label", page.title || "Book page " + page.number);
+      article.setAttribute("aria-label", page.title ? page.title + ", page " + page.number : "Book page " + page.number);
 
-      let blocks = Array.isArray(page.blocks) ? [...page.blocks] : [];
+      const content = document.createElement("div");
+      content.className = "pageContent";
+
+      let blocks = Array.isArray(page.blocks) ? page.blocks.map(normaliseText).filter(Boolean) : [];
       const first = blocks[0] || "";
-      const normalizedFirst = first.replace(/\s+/g, " ").trim();
-      const normalizedTitle = (page.title || "").replace(/\s+/g, " ").trim();
+      const pageTitle = normaliseText(page.title || "");
 
-      if (normalizedTitle && normalizedFirst === normalizedTitle) {
+      if (pageTitle && first === pageTitle) {
         const h1 = document.createElement("h1");
         h1.textContent = blocks.shift();
-        article.appendChild(h1);
-      } else if (normalizedTitle && page.number === 1) {
+        content.appendChild(h1);
+      } else if (pageTitle && Number(page.number) === 1) {
         const h1 = document.createElement("h1");
-        h1.textContent = normalizedTitle;
-        article.appendChild(h1);
+        h1.textContent = pageTitle;
+        content.appendChild(h1);
       }
 
       blocks.forEach((text) => {
-        const t = String(text || "").trim();
-        if (!t) return;
-
-        if (/^[A-Z0-9 ,.'’“”"—–-]+$/.test(t) && t.length < 90 && !/[.!?]$/.test(t)) {
+        if (looksLikeHeading(text)) {
           const h2 = document.createElement("h2");
-          h2.textContent = t;
-          article.appendChild(h2);
-          return;
+          h2.textContent = text;
+          content.appendChild(h2);
+        } else {
+          content.appendChild(makeParagraph(text));
         }
-
-        article.appendChild(makeParagraph(t));
       });
 
       const meta = document.createElement("div");
       meta.className = "smallMeta";
-      meta.textContent = "Page " + page.number + " of 145";
-      article.appendChild(meta);
+      meta.textContent = "Page " + page.number + " of " + TOTAL_BOOK_PAGES;
 
+      article.append(content, meta);
       return article;
     }
 
@@ -780,40 +857,77 @@
       img.src = page.image;
       img.alt = BOOK_TITLE + " book cover by " + AUTHOR;
       img.decoding = "async";
+      img.loading = "eager";
       cover.appendChild(img);
-
       return cover;
+    }
+
+    function baseFontForViewport() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const stored = customFontSize || Number(getComputedStyle(document.documentElement).getPropertyValue("--reader-font-size").replace("px", "")) || 18;
+      if (h < 560) return Math.min(stored, 15.5);
+      if (w < 380) return Math.min(stored, 16.5);
+      if (w < 560) return Math.min(stored, 17.5);
+      if (w > 1000 && h > 760) return Math.max(stored, 20);
+      return stored;
+    }
+
+    function fitTextToPage() {
+      const page = pageShell.querySelector(".bookPage");
+      if (!page) return;
+
+      const content = page.querySelector(".pageContent");
+      if (!content) return;
+
+      let size = baseFontForViewport();
+      let line = window.innerHeight < 560 ? 1.38 : 1.55;
+      const minSize = window.innerWidth < 360 || window.innerHeight < 560 ? 9.6 : 10.5;
+
+      page.style.setProperty("--page-font", size + "px");
+      page.style.setProperty("--page-line-height", line);
+
+      let guard = 0;
+      while ((page.scrollHeight > page.clientHeight + 1 || content.scrollHeight > content.clientHeight + 1) && size > minSize && guard < 80) {
+        size -= 0.35;
+        if (size < 13.5) line = Math.max(1.24, line - 0.008);
+        page.style.setProperty("--page-font", size.toFixed(2) + "px");
+        page.style.setProperty("--page-line-height", line.toFixed(3));
+        guard++;
+      }
+    }
+
+    function updateChrome(page) {
+      if (page.kind === "cover") {
+        pageCount.textContent = "Cover";
+        progressBar.style.width = "0%";
+      } else {
+        pageCount.textContent = "Page " + page.number + " / " + TOTAL_BOOK_PAGES;
+        progressBar.style.width = ((Number(page.number) / TOTAL_BOOK_PAGES) * 100).toFixed(2) + "%";
+      }
+      prevButton.disabled = currentPage === 0;
+      nextButton.disabled = currentPage === BOOK_PAGES.length - 1;
+    }
+
+    function updateHash(page, shouldUpdateHash) {
+      if (!shouldUpdateHash) return;
+      const nextHash = page.kind === "cover" ? "#cover" : "#page-" + page.number;
+      if (window.location.hash !== nextHash) history.replaceState(null, "", nextHash);
     }
 
     function renderPage(index, shouldUpdateHash = true) {
       currentPage = clamp(index, 0, BOOK_PAGES.length - 1);
       const page = BOOK_PAGES[currentPage];
-
       pageShell.innerHTML = "";
       pageShell.appendChild(page.kind === "cover" ? renderCoverPage(page) : renderTextPage(page));
       pageShell.focus({ preventScroll: true });
 
-      const readableCount = currentPage === 0
-        ? "Cover"
-        : "Page " + page.number + " / 145";
+      if (page.kind !== "cover") requestAnimationFrame(fitTextToPage);
 
-      pageCount.textContent = readableCount;
-      progressBar.style.width = ((currentPage / (BOOK_PAGES.length - 1)) * 100).toFixed(2) + "%";
-
-      prevButton.disabled = currentPage === 0;
-      nextButton.disabled = currentPage === BOOK_PAGES.length - 1;
-
+      updateChrome(page);
       localStorage.setItem(STORE_KEY_PAGE, String(currentPage));
-
-      document.title = currentPage === 0
-        ? BOOK_TITLE + " - " + AUTHOR
-        : BOOK_TITLE + " - Page " + page.number;
-
-      if (shouldUpdateHash) {
-        const nextHash = currentPage === 0 ? "#cover" : "#page-" + page.number;
-        history.replaceState(null, "", nextHash);
-      }
-
+      document.title = page.kind === "cover" ? BOOK_TITLE + " - " + AUTHOR : BOOK_TITLE + " - Page " + page.number;
+      updateHash(page, shouldUpdateHash);
       showChromeTemporarily();
     }
 
@@ -828,9 +942,8 @@
     function openDrawer(scrollToToc = false) {
       document.body.classList.add("drawerOpen");
       drawer.setAttribute("aria-hidden", "false");
-      if (scrollToToc) {
-        setTimeout(() => document.getElementById("toc").scrollIntoView({ block: "start" }), 40);
-      }
+      reader.classList.remove("chromeHidden");
+      if (scrollToToc) setTimeout(() => document.getElementById("toc").scrollIntoView({ block: "start" }), 35);
     }
 
     function closeDrawer() {
@@ -850,14 +963,13 @@
         title.textContent = chapter.title;
 
         const page = document.createElement("span");
-        page.textContent = chapter.page === 0 ? "Cover" : "p. " + chapter.page;
+        page.textContent = Number(chapter.page) === 0 ? "Cover" : "p. " + chapter.page;
 
         item.append(title, page);
         item.addEventListener("click", () => {
           closeDrawer();
           renderPage(pageIndexFromBookPage(chapter.page));
         });
-
         tocList.appendChild(item);
       });
     }
@@ -866,82 +978,90 @@
       reader.classList.remove("chromeHidden");
       clearTimeout(chromeTimer);
       chromeTimer = setTimeout(() => {
-        if (!document.body.classList.contains("drawerOpen")) {
-          reader.classList.add("chromeHidden");
-        }
-      }, 3600);
+        if (!document.body.classList.contains("drawerOpen")) reader.classList.add("chromeHidden");
+      }, 2800);
     }
 
-    function changeFont(delta) {
-      const style = getComputedStyle(document.documentElement);
-      const current = Number((style.getPropertyValue("--reader-font-size") || "20px").replace("px", "")) || 20;
-      const next = clamp(current + delta, 16, 28);
-      document.documentElement.style.setProperty("--reader-font-size", next + "px");
-      localStorage.setItem(STORE_KEY_FONT, String(next));
-      showChromeTemporarily();
-    }
-
-    function resetFont() {
-      localStorage.removeItem(STORE_KEY_FONT);
-      document.documentElement.style.removeProperty("--reader-font-size");
-      showChromeTemporarily();
+    function updateFontSize(delta) {
+      const current = customFontSize || Number(getComputedStyle(document.documentElement).getPropertyValue("--reader-font-size").replace("px", "")) || 18;
+      customFontSize = clamp(current + delta, 13, 24);
+      document.documentElement.style.setProperty("--reader-font-size", customFontSize + "px");
+      localStorage.setItem(STORE_KEY_FONT, String(customFontSize));
+      renderPage(currentPage, false);
     }
 
     prevButton.addEventListener("click", prevPage);
     nextButton.addEventListener("click", nextPage);
-    tapLeft.addEventListener("click", () => { showChromeTemporarily(); prevPage(); });
-    tapRight.addEventListener("click", () => { showChromeTemporarily(); nextPage(); });
-
+    tapLeft.addEventListener("click", prevPage);
+    tapRight.addEventListener("click", nextPage);
     menuButton.addEventListener("click", () => openDrawer(false));
     closeButton.addEventListener("click", closeDrawer);
     shade.addEventListener("click", closeDrawer);
     continueButton.addEventListener("click", closeDrawer);
     tocTopButton.addEventListener("click", () => openDrawer(true));
-
-    document.getElementById("fontDown").addEventListener("click", () => changeFont(-1));
-    document.getElementById("fontUp").addEventListener("click", () => changeFont(1));
-    document.getElementById("fontReset").addEventListener("click", resetFont);
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeDrawer();
-      if (document.body.classList.contains("drawerOpen")) return;
-      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") nextPage();
-      if (event.key === "ArrowLeft" || event.key === "PageUp") prevPage();
+    fontDown.addEventListener("click", () => updateFontSize(-1));
+    fontUp.addEventListener("click", () => updateFontSize(1));
+    fontReset.addEventListener("click", () => {
+      customFontSize = null;
+      localStorage.removeItem(STORE_KEY_FONT);
+      document.documentElement.style.removeProperty("--reader-font-size");
+      renderPage(currentPage, false);
     });
 
-    reader.addEventListener("pointermove", showChromeTemporarily);
-    reader.addEventListener("click", showChromeTemporarily);
+    document.addEventListener("keydown", (event) => {
+      if (document.body.classList.contains("drawerOpen")) {
+        if (event.key === "Escape") closeDrawer();
+        return;
+      }
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        nextPage();
+      }
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        prevPage();
+      }
+      if (event.key.toLowerCase() === "m") openDrawer(false);
+    });
 
-    document.addEventListener("touchstart", (event) => {
-      if (!event.changedTouches || !event.changedTouches.length) return;
-      touchStartX = event.changedTouches[0].clientX;
-      touchStartY = event.changedTouches[0].clientY;
+    reader.addEventListener("pointermove", showChromeTemporarily, { passive: true });
+    reader.addEventListener("touchstart", (event) => {
+      const touch = event.changedTouches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      showChromeTemporarily();
     }, { passive: true });
 
-    document.addEventListener("touchend", (event) => {
+    reader.addEventListener("touchend", (event) => {
       if (document.body.classList.contains("drawerOpen")) return;
-      if (!event.changedTouches || !event.changedTouches.length) return;
-
-      const dx = event.changedTouches[0].clientX - touchStartX;
-      const dy = event.changedTouches[0].clientY - touchStartY;
-
-      if (Math.abs(dx) > 56 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.35) {
         dx < 0 ? nextPage() : prevPage();
       }
     }, { passive: true });
 
     window.addEventListener("hashchange", () => {
-      const next = getInitialPage();
-      if (next !== currentPage) renderPage(next, false);
-      if (window.location.hash === "#toc") openDrawer(true);
+      const hash = window.location.hash || "";
+      if (hash === "#cover") renderPage(0, false);
+      const match = hash.match(/^#page-(\d+)$/i);
+      if (match) renderPage(pageIndexFromBookPage(Number(match[1])), false);
     });
+
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => renderPage(currentPage, false), 120);
+    });
+
+    // Keep the reader locked to page turns only. The drawer can still scroll when open.
+    document.addEventListener("wheel", (event) => {
+      if (!document.body.classList.contains("drawerOpen")) event.preventDefault();
+    }, { passive: false });
 
     buildToc();
     renderPage(currentPage, false);
-
-    if (window.location.hash === "#toc") {
-      openDrawer(true);
-    }
+    updateHash(BOOK_PAGES[currentPage], true);
   </script>
 </body>
 </html>
